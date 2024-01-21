@@ -6,6 +6,8 @@
 
 
 ## Libraries used
+Thank you for these libraries.
+
 ### python-prompt-toolkit
 https://github.com/prompt-toolkit/python-prompt-toolkit?tab=readme-ov-file
 
