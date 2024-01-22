@@ -65,7 +65,7 @@ class SubnetCompleter(Completer):
 
 def subnet_mask_chenger(mask):
     commands = {
-        "/8": "",
+        "/8": "255.0.0.0",
         "/9": "255.128.0.0",
         "/10": "255.192.0.0",
         "/11": "255.224.0.0",
