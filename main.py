@@ -1,3 +1,4 @@
+print("loading...")
 from rich.markdown import Markdown
 from rich.console import Console
 from prompt_toolkit import prompt
@@ -6,7 +7,7 @@ from SubnetCompleter import SubnetCompleter, subnet_mask_chenger
 from rich.panel import Panel
 import pyperclip
 from prompt_toolkit.history import InMemoryHistory
-
+import time
 
 title = """
 # Cisco Command AutoComplete Tool
@@ -49,16 +50,15 @@ def is_selectin_equal():
 
 
 if __name__ == "__main__":
+    print("loading...")
     mode_history = InMemoryHistory()
     ip_history = InMemoryHistory()
     mask_history = InMemoryHistory()
     console = Console()
-    console.print(Markdown(title, style="bold underline green italic"))
-
     tmp = ""
     count = 0
     select_list = []
-
+    console.print(Markdown(title, style="bold underline green italic"))
     while True:
         # ユーザーに選択肢を表示し、選択を取得
         selection = prompt(
@@ -106,10 +106,17 @@ if __name__ == "__main__":
             selection = selection.replace("[mask]", mask)
 
         elif selection == "hostname [hostname]":
-            pass
+            hostname = prompt(
+                "Please input hostname: ",
+                complete_in_thread=True,
+            )
+            selection = selection.replace("[hostname]", hostname)
+
         select_list.append(selection)
         count += 1
         tmp += f"line[{count}] : {selection}\n"
         # 選択を表示
         select_command = Panel(tmp, title="Command list", expand=True)
         console.print(select_command)
+
+    time.sleep(3)
